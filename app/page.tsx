@@ -192,9 +192,9 @@ export default function LandingPage() {
               <div className="text-center lg:text-left space-y-8">
                 <AnimatedText 
                   el="h1"
-                  text="A arte de esculpir sorrisos de propósito."
+                  text="Encontrando propósito em cada sorriso."
                   className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium leading-tight text-charcoal"
-                  highlightWords={['arte', 'propósito']}
+                  highlightWords={['propósito', 'sorriso']}
                   highlightClassName="text-primary"
                 />
                 <Reveal>
