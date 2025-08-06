@@ -17,6 +17,12 @@ import { cn } from '@/lib/utils'
 import Preloader from '@/components/preloader'
 import AnimatedText from '@/components/animated-text'
 import Reveal from '@/components/reveal'
+import { User, Phone, Mail, Calendar, LoaderCircle } from 'lucide-react'
+import FloatingLabelInput from '@/components/floating-label-input'
+import { useIMask } from 'react-imask'
+import { DatePicker } from '@/components/date-picker'
+import { format } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 
 export default function LandingPage() {
   const [isLoading, setIsLoading] = useState(true)
@@ -25,13 +31,17 @@ export default function LandingPage() {
   const [activeSection, setActiveSection] = useState('inicio')
   const [isFormLoading, setIsFormLoading] = useState(false)
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [selectedDate, setSelectedDate] = useState<Date>()
+
+  const { ref: phoneRef, value: phoneValue, setValue: setPhoneValue } = useIMask({
+    mask: '(00) 00000-0000'
+  });
 
   const [formState, setFormState] = useState({
     nome: '',
     telefone: '',
     email: '',
     tratamento: '',
-    dataPreferida: '',
     mensagem: '',
   })
 
@@ -72,20 +82,32 @@ export default function LandingPage() {
     e.preventDefault()
     setIsFormLoading(true)
     await new Promise(resolve => setTimeout(resolve, 1500))
-    const { nome, telefone, email, tratamento, dataPreferida, mensagem } = formState
+    const { nome, telefone, email, tratamento, mensagem } = formState
+    const dataPreferida = selectedDate ? format(selectedDate, 'dd/MM/yyyy') : 'Nenhuma data selecionada'
+    
     let whatsappMessage = `Olá Dra. Aline! Gostaria de reservar uma consulta.\n\n*Nome:* ${nome}\n*Telefone:* ${telefone}\n*E-mail:* ${email}\n*Tratamento de interesse:* ${tratamento}\n*Data preferida:* ${dataPreferida}\n*Mensagem:* ${mensagem}\n\nVi seu site e gostaria de saber mais!`
     const encodedMessage = encodeURIComponent(whatsappMessage)
     window.open(`https://wa.me/5511999999999?text=${encodedMessage}`, '_blank')
     setIsFormLoading(false)
     setFormSubmitted(true)
-    setFormState({ nome: '', telefone: '', email: '', tratamento: '', dataPreferida: '', mensagem: '' })
+    setFormState({ nome: '', telefone: '', email: '', tratamento: '', mensagem: '' })
+    setSelectedDate(undefined)
+    setPhoneValue('')
     setTimeout(() => setFormSubmitted(false), 5000)
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormState(prevState => ({ ...prevState, [name]: value }))
+    if (name === 'telefone') {
+      setPhoneValue(value)
+    } else {
+      setFormState(prevState => ({ ...prevState, [name]: value }))
+    }
   }
+
+  useEffect(() => {
+    setFormState(prevState => ({ ...prevState, telefone: phoneValue }))
+  }, [phoneValue])
 
   const handleSelectChange = (value: string) => {
     setFormState(prevState => ({ ...prevState, tratamento: value }))
@@ -345,23 +367,45 @@ export default function LandingPage() {
                   )}
                   <form onSubmit={handleFormSubmit} className="space-y-6 sm:space-y-8">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-                      <div>
-                        <Label htmlFor="nome" className="font-medium mb-2 block text-charcoal/80 text-sm sm:text-base">Nome *</Label>
-                        <Input id="nome" name="nome" type="text" required value={formState.nome} onChange={handleInputChange} className="bg-ivory/50 border-charcoal/20 focus:border-gold focus:ring-gold h-12 sm:h-auto text-base" disabled={isFormLoading} />
-                      </div>
-                      <div>
-                        <Label htmlFor="telefone" className="font-medium mb-2 block text-charcoal/80 text-sm sm:text-base">Telefone *</Label>
-                        <Input id="telefone" name="telefone" type="tel" required value={formState.telefone} onChange={handleInputChange} className="bg-ivory/50 border-charcoal/20 focus:border-gold focus:ring-gold h-12 sm:h-auto text-base" disabled={isFormLoading} />
-                      </div>
+                      <FloatingLabelInput
+                        id="nome"
+                        name="nome"
+                        label="Nome *"
+                        type="text"
+                        required
+                        value={formState.nome}
+                        onChange={handleInputChange}
+                        disabled={isFormLoading}
+                        icon={User}
+                      />
+                      <FloatingLabelInput
+                        ref={phoneRef}
+                        id="telefone"
+                        name="telefone"
+                        label="Telefone *"
+                        type="tel"
+                        required
+                        value={formState.telefone}
+                        onChange={handleInputChange}
+                        disabled={isFormLoading}
+                        icon={Phone}
+                      />
                     </div>
+                    <FloatingLabelInput
+                      id="email"
+                      name="email"
+                      label="E-mail *"
+                      type="email"
+                      required
+                      value={formState.email}
+                      onChange={handleInputChange}
+                      disabled={isFormLoading}
+                      icon={Mail}
+                    />
                     <div>
-                      <Label htmlFor="email" className="font-medium mb-2 block text-charcoal/80 text-sm sm:text-base">E-mail *</Label>
-                      <Input id="email" name="email" type="email" required value={formState.email} onChange={handleInputChange} className="bg-ivory/50 border-charcoal/20 focus:border-gold focus:ring-gold h-12 sm:h-auto text-base" disabled={isFormLoading} />
-                    </div>
-                    <div>
-                      <Label htmlFor="tratamento" className="font-medium mb-2 block text-charcoal/80 text-sm sm:text-base">Tratamento de Interesse</Label>
-                      <Select name="tratamento" onValueChange={handleSelectChange} disabled={isFormLoading}>
-                        <SelectTrigger className="bg-ivory/50 border-charcoal/20 focus:border-gold focus:ring-gold h-12 sm:h-auto text-base">
+                      <Label htmlFor="tratamento" className="font-medium mb-2 block text-charcoal/80 text-sm">Tratamento de Interesse</Label>
+                      <Select name="tratamento" onValueChange={handleSelectChange} disabled={isFormLoading} value={formState.tratamento}>
+                        <SelectTrigger className="bg-ivory/50 border-charcoal/20 focus:border-gold focus:ring-gold h-14 text-base">
                           <SelectValue placeholder="Selecione um tratamento" />
                         </SelectTrigger>
                         <SelectContent>
@@ -373,19 +417,11 @@ export default function LandingPage() {
                       </Select>
                     </div>
                     <div>
-                      <Label htmlFor="dataPreferida" className="font-medium mb-2 block text-charcoal/80 text-sm sm:text-base">Data Preferida para Consulta</Label>
-                      <Input 
-                        id="dataPreferida" 
-                        name="dataPreferida" 
-                        type="date" 
-                        value={formState.dataPreferida} 
-                        onChange={handleInputChange} 
-                        className="bg-ivory/50 border-charcoal/20 focus:border-gold focus:ring-gold h-12 sm:h-auto text-base" 
-                        disabled={isFormLoading}
-                        min={new Date().toISOString().split('T')[0]}
-                      />
+                      <Label className="font-medium mb-2 block text-charcoal/80 text-sm">Data Preferida para Consulta</Label>
+                      <DatePicker date={selectedDate} setDate={setSelectedDate} disabled={isFormLoading} />
                     </div>
-                    <Button type="submit" className="w-full bg-primary hover:bg-gold text-white text-base sm:text-lg font-semibold py-6 sm:py-7 rounded-xl shadow-lg hover:shadow-2xl transition-all disabled:opacity-50 max-w-md mx-auto block" size="lg" disabled={isFormLoading}>
+                    <Button type="submit" className="w-full bg-primary hover:bg-gold text-white text-base sm:text-lg font-semibold py-4 rounded-xl shadow-lg hover:shadow-2xl transition-all disabled:opacity-50 flex items-center justify-center gap-3" size="lg" disabled={isFormLoading}>
+                      {isFormLoading && <LoaderCircle className="animate-spin" />}
                       {isFormLoading ? 'Enviando...' : 'Reservar minha Consulta'}
                     </Button>
                   </form>
