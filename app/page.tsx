@@ -131,7 +131,7 @@ export default function LandingPage() {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         isHeaderScrolled ? "bg-ivory/80 shadow-lg backdrop-blur-lg" : "bg-transparent"
       )}>
-        <div className="container mx-auto px-4 sm:px-6">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center justify-between py-4 sm:py-5">
             <button onClick={() => scrollToSection('inicio')} className="flex flex-col group">
               <h1 className="font-serif text-xl sm:text-2xl font-medium text-primary group-hover:text-gold transition-colors">Dra. Aline Foganholi</h1>
@@ -188,68 +188,68 @@ export default function LandingPage() {
         {/* Hero Section */}
         <section ref={sectionRefs.inicio} id="inicio" className="min-h-screen pt-32 sm:pt-40 pb-16 sm:pb-20 flex items-center relative">
           <div className="absolute inset-0 bg-gradient-to-br from-ivory to-secondary/20 opacity-50"></div>
-          <div className="container mx-auto px-4 sm:px-6 z-10">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <div className="text-center lg:text-left space-y-6 sm:space-y-8">
-                <AnimatedText 
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16 xl:gap-24 max-w-7xl mx-auto">
+              <div className="text-center lg:text-left space-y-6 sm:space-y-8 lg:max-w-xl xl:max-w-2xl">
+                <AnimatedText
                   el="h1"
                   text="Encontrando propósito em cada sorriso."
-                  className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium leading-tight text-charcoal"
+                  className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium leading-tight text-charcoal"
                   highlightWords={['propósito', 'sorriso']}
                   highlightClassName="text-primary"
                 />
-                <Reveal>
-                  <p className="text-base sm:text-lg text-charcoal/80 max-w-xl mx-auto lg:mx-0 leading-relaxed px-4 sm:px-0">
-                    Uma jornada de transformação que une ciência, arte e um cuidado excepcional para revelar a sua melhor versão.
-                  </p>
-                </Reveal>
                 <Reveal delay={0.2}>
-                  <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 sm:gap-6 pt-4 sm:pt-6 px-4 sm:px-0">
-                    <Button onClick={() => scrollToSection('contato')} size="lg" className="bg-primary hover:bg-gold text-white rounded-full px-8 sm:px-10 py-6 sm:py-7 text-base font-semibold shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group w-full sm:w-auto">
-                      Reservar sua Consulta
-                      <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                    <Button onClick={() => scrollToSection('sobre')} size="lg" variant="outline" className="border-charcoal/20 text-charcoal hover:bg-charcoal hover:text-ivory rounded-full px-8 sm:px-10 py-6 sm:py-7 text-base font-semibold hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto">
-                      Descubra a Experiência
-                    </Button>
+                  <div className="space-y-8">
+                    <p className="text-base sm:text-lg lg:text-xl text-charcoal/80 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                      Uma jornada de transformação que une ciência, arte e um cuidado excepcional para revelar a sua melhor versão.
+                    </p>
+                    <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6">
+                      <Button onClick={() => scrollToSection('contato')} className="bg-primary hover:bg-gold text-white rounded-full px-8 py-4 text-base font-semibold shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group w-full sm:w-auto">
+                        Reservar sua Consulta
+                        <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                      <Button onClick={() => scrollToSection('sobre')} className="bg-ivory border border-charcoal/20 text-charcoal hover:bg-charcoal hover:text-ivory rounded-full px-8 py-4 text-base font-semibold shadow-none hover:shadow-lg hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto">
+                        Descubra a Experiência
+                      </Button>
+                    </div>
                   </div>
                 </Reveal>
               </div>
-              <motion.div 
-                className="flex justify-center mt-8 lg:mt-0"
+              <motion.div
+                className="flex justify-center mt-8 lg:mt-0 w-full max-w-sm lg:max-w-md"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className="relative group w-full max-w-sm">
+                <div className="relative group w-full">
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-gold rounded-3xl blur-xl opacity-20 group-hover:opacity-50 transition duration-1000"></div>
                   <Card className="bg-ivory/50 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20 w-full overflow-hidden">
-                    <CardContent className="p-6 sm:p-8">
+                    <CardContent className="p-6 sm:p-8 lg:p-10">
                       <div className="flex flex-col items-center text-center gap-4 sm:gap-6">
-                        <Image 
-                          src="/dra-aline-profile.jpeg" 
-                          alt="Dra. Aline Foganholi" 
-                          width={100} 
-                          height={100} 
-                          className="rounded-full border-4 border-white shadow-lg sm:w-[120px] sm:h-[120px]" 
+                        <Image
+                          src="/dra-aline-profile.jpeg"
+                          alt="Dra. Aline Foganholi"
+                          width={120}
+                          height={120}
+                          className="rounded-full border-4 border-white shadow-lg w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32"
                         />
                         <div>
-                          <h3 className="font-serif text-2xl sm:text-3xl font-medium text-charcoal mb-1">Dra. Aline Foganholi</h3>
-                          <p className="text-gold tracking-widest font-medium text-sm">ESPECIALISTA</p>
+                          <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-medium text-charcoal mb-1">Dra. Aline Foganholi</h3>
+                          <p className="text-gold tracking-widest font-medium text-sm lg:text-base">ESPECIALISTA</p>
                         </div>
                         <div className="w-full border-t border-charcoal/10 my-2"></div>
-                        <div className="flex justify-center gap-3 sm:gap-4 w-full">
+                        <div className="flex justify-center gap-3 sm:gap-4 lg:gap-6 w-full">
                           <div className="text-center flex-1">
-                            <p className="font-bold text-xl sm:text-2xl text-primary">8+</p>
-                            <p className="text-[10px] sm:text-xs text-charcoal/60">Anos de Experiência</p>
+                            <p className="font-bold text-xl sm:text-2xl lg:text-3xl text-primary">8+</p>
+                            <p className="text-[10px] sm:text-xs lg:text-sm text-charcoal/60">Anos de Experiência</p>
                           </div>
                           <div className="text-center flex-1">
-                            <p className="font-bold text-xl sm:text-2xl text-primary">500+</p>
-                            <p className="text-[10px] sm:text-xs text-charcoal/60">Sorrisos Criados</p>
+                            <p className="font-bold text-xl sm:text-2xl lg:text-3xl text-primary">500+</p>
+                            <p className="text-[10px] sm:text-xs lg:text-sm text-charcoal/60">Sorrisos Criados</p>
                           </div>
                           <div className="text-center flex-1">
-                            <p className="font-bold text-xl sm:text-2xl text-primary">5★</p>
-                            <p className="text-[10px] sm:text-xs text-charcoal/60">Avaliação Média</p>
+                            <p className="font-bold text-xl sm:text-2xl lg:text-3xl text-primary">5★</p>
+                            <p className="text-[10px] sm:text-xs lg:text-sm text-charcoal/60">Avaliação Média</p>
                           </div>
                         </div>
                       </div>
@@ -263,20 +263,20 @@ export default function LandingPage() {
 
         {/* Depoimentos Section */}
         <section ref={sectionRefs.depoimentos} id="depoimentos" className="py-20 sm:py-32 bg-ivory">
-          <div className="container mx-auto px-4 sm:px-6">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Reveal>
-              <div className="text-center mb-16 sm:mb-20">
-                <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium mb-4 sm:mb-6">Jornadas de Transformação</h2>
-                <p className="text-base sm:text-lg text-charcoal/80 max-w-3xl mx-auto px-4 sm:px-0">Histórias reais de pacientes que redescobriram a alegria de sorrir.</p>
+              <div className="text-center mb-16 sm:mb-20 max-w-4xl mx-auto">
+                <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium mb-4 sm:mb-6">Jornadas de Transformação</h2>
+                <p className="text-base sm:text-lg lg:text-xl text-charcoal/80 max-w-3xl mx-auto px-4 sm:px-0">Histórias reais de pacientes que redescobriram a alegria de sorrir.</p>
               </div>
             </Reveal>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 max-w-6xl mx-auto">
               {testimonials.map((testimonial, index) => (
                 <Reveal key={index} delay={index * 0.1}>
                   <Card className="bg-transparent border-charcoal/10 rounded-2xl p-6 sm:p-8 h-full flex flex-col hover:bg-white hover:border-transparent hover:shadow-2xl transition-all duration-500">
                     <CardContent className="p-0 flex flex-col flex-grow">
                       <Quote className="text-gold h-8 w-8 sm:h-10 sm:w-10 mb-4 sm:mb-6" />
-                      <p className="text-charcoal/90 mb-6 sm:mb-8 leading-relaxed italic flex-grow text-sm sm:text-base">"{testimonial.text}"</p>
+                      <p className="text-charcoal/90 mb-6 sm:mb-8 leading-relaxed italic flex-grow text-sm sm:text-base lg:text-lg">"{testimonial.text}"</p>
                       <div className="flex items-center justify-between mt-auto pt-4 sm:pt-6 border-t border-charcoal/10">
                         <div>
                           <h4 className="font-semibold text-base sm:text-lg text-charcoal">{testimonial.name}</h4>
@@ -298,11 +298,11 @@ export default function LandingPage() {
 
         {/* FAQ Section */}
         <section ref={sectionRefs.faq} id="faq" className="py-20 sm:py-32 bg-secondary/20">
-          <div className="container mx-auto px-4 sm:px-6">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Reveal>
-              <div className="text-center mb-16 sm:mb-20">
-                <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium mb-4 sm:mb-6">Perguntas Frequentes</h2>
-                <p className="text-base sm:text-lg text-charcoal/80 max-w-3xl mx-auto px-4 sm:px-0">Informações essenciais para iniciar sua jornada conosco.</p>
+              <div className="text-center mb-16 sm:mb-20 max-w-4xl mx-auto">
+                <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium mb-4 sm:mb-6">Perguntas Frequentes</h2>
+                <p className="text-base sm:text-lg lg:text-xl text-charcoal/80 max-w-3xl mx-auto px-4 sm:px-0">Informações essenciais para iniciar sua jornada conosco.</p>
               </div>
             </Reveal>
             <div className="max-w-4xl mx-auto">
@@ -310,10 +310,10 @@ export default function LandingPage() {
                 {faqs.map((faq, index) => (
                   <Reveal key={index} delay={index * 0.05}>
                     <AccordionItem value={`item-${index}`} className="bg-ivory/50 rounded-2xl border border-charcoal/10 transition-all duration-500 hover:bg-white hover:shadow-xl">
-                      <AccordionTrigger className="px-6 sm:px-8 py-4 sm:py-6 text-left font-serif text-lg sm:text-xl text-charcoal hover:text-primary hover:no-underline">
+                      <AccordionTrigger className="px-6 sm:px-8 py-4 sm:py-6 text-left font-serif text-lg sm:text-xl lg:text-2xl text-charcoal hover:text-primary hover:no-underline">
                         {faq.question}
                       </AccordionTrigger>
-                      <AccordionContent className="px-6 sm:px-8 pb-4 sm:pb-6 text-charcoal/80 leading-relaxed text-sm sm:text-base">
+                      <AccordionContent className="px-6 sm:px-8 pb-4 sm:pb-6 text-charcoal/80 leading-relaxed text-sm sm:text-base lg:text-lg">
                         {faq.answer}
                       </AccordionContent>
                     </AccordionItem>
@@ -326,11 +326,11 @@ export default function LandingPage() {
 
         {/* Contato Section */}
         <section ref={sectionRefs.contato} id="contato" className="py-20 sm:py-32 bg-ivory">
-          <div className="container mx-auto px-4 sm:px-6">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Reveal>
-              <div className="text-center mb-16 sm:mb-20">
-                <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium mb-4 sm:mb-6">Inicie Sua Jornada</h2>
-                <p className="text-base sm:text-lg text-charcoal/80 max-w-3xl mx-auto px-4 sm:px-0">Dê o primeiro passo para o sorriso que você merece. Nossa equipe de concierge está pronta para atendê-lo.</p>
+              <div className="text-center mb-16 sm:mb-20 max-w-4xl mx-auto">
+                <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium mb-4 sm:mb-6">Inicie Sua Jornada</h2>
+                <p className="text-base sm:text-lg lg:text-xl text-charcoal/80 max-w-3xl mx-auto px-4 sm:px-0">Dê o primeiro passo para o sorriso que você merece. Nossa equipe de concierge está pronta para atendê-lo.</p>
               </div>
             </Reveal>
             <div className="max-w-4xl mx-auto">
@@ -347,21 +347,21 @@ export default function LandingPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                       <div>
                         <Label htmlFor="nome" className="font-medium mb-2 block text-charcoal/80 text-sm sm:text-base">Nome *</Label>
-                        <Input id="nome" name="nome" type="text" required value={formState.nome} onChange={handleInputChange} className="bg-ivory/50 border-charcoal/20 focus:border-gold focus:ring-gold h-12 sm:h-auto" disabled={isFormLoading} />
+                        <Input id="nome" name="nome" type="text" required value={formState.nome} onChange={handleInputChange} className="bg-ivory/50 border-charcoal/20 focus:border-gold focus:ring-gold h-12 sm:h-auto text-base" disabled={isFormLoading} />
                       </div>
                       <div>
                         <Label htmlFor="telefone" className="font-medium mb-2 block text-charcoal/80 text-sm sm:text-base">Telefone *</Label>
-                        <Input id="telefone" name="telefone" type="tel" required value={formState.telefone} onChange={handleInputChange} className="bg-ivory/50 border-charcoal/20 focus:border-gold focus:ring-gold h-12 sm:h-auto" disabled={isFormLoading} />
+                        <Input id="telefone" name="telefone" type="tel" required value={formState.telefone} onChange={handleInputChange} className="bg-ivory/50 border-charcoal/20 focus:border-gold focus:ring-gold h-12 sm:h-auto text-base" disabled={isFormLoading} />
                       </div>
                     </div>
                     <div>
                       <Label htmlFor="email" className="font-medium mb-2 block text-charcoal/80 text-sm sm:text-base">E-mail *</Label>
-                      <Input id="email" name="email" type="email" required value={formState.email} onChange={handleInputChange} className="bg-ivory/50 border-charcoal/20 focus:border-gold focus:ring-gold h-12 sm:h-auto" disabled={isFormLoading} />
+                      <Input id="email" name="email" type="email" required value={formState.email} onChange={handleInputChange} className="bg-ivory/50 border-charcoal/20 focus:border-gold focus:ring-gold h-12 sm:h-auto text-base" disabled={isFormLoading} />
                     </div>
                     <div>
                       <Label htmlFor="tratamento" className="font-medium mb-2 block text-charcoal/80 text-sm sm:text-base">Tratamento de Interesse</Label>
                       <Select name="tratamento" onValueChange={handleSelectChange} disabled={isFormLoading}>
-                        <SelectTrigger className="bg-ivory/50 border-charcoal/20 focus:border-gold focus:ring-gold h-12 sm:h-auto">
+                        <SelectTrigger className="bg-ivory/50 border-charcoal/20 focus:border-gold focus:ring-gold h-12 sm:h-auto text-base">
                           <SelectValue placeholder="Selecione um tratamento" />
                         </SelectTrigger>
                         <SelectContent>
@@ -380,12 +380,12 @@ export default function LandingPage() {
                         type="date" 
                         value={formState.dataPreferida} 
                         onChange={handleInputChange} 
-                        className="bg-ivory/50 border-charcoal/20 focus:border-gold focus:ring-gold h-12 sm:h-auto" 
+                        className="bg-ivory/50 border-charcoal/20 focus:border-gold focus:ring-gold h-12 sm:h-auto text-base" 
                         disabled={isFormLoading}
                         min={new Date().toISOString().split('T')[0]}
                       />
                     </div>
-                    <Button type="submit" className="w-full bg-primary hover:bg-gold text-white text-base sm:text-lg font-semibold py-6 sm:py-7 rounded-xl shadow-lg hover:shadow-2xl transition-all disabled:opacity-50" size="lg" disabled={isFormLoading}>
+                    <Button type="submit" className="w-full bg-primary hover:bg-gold text-white text-base sm:text-lg font-semibold py-6 sm:py-7 rounded-xl shadow-lg hover:shadow-2xl transition-all disabled:opacity-50 max-w-md mx-auto block" size="lg" disabled={isFormLoading}>
                       {isFormLoading ? 'Enviando...' : 'Reservar minha Consulta'}
                     </Button>
                   </form>
@@ -397,8 +397,8 @@ export default function LandingPage() {
       </main>
 
       <footer className="bg-charcoal text-ivory pt-16 sm:pt-24 pb-8 sm:pb-10">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 text-center md:text-left">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 text-center md:text-left max-w-6xl mx-auto">
             <div className="md:col-span-1">
               <h3 className="font-serif text-xl sm:text-2xl font-medium mb-3 sm:mb-4">Dra. Aline Foganholi</h3>
               <p className="text-ivory/60 leading-relaxed text-sm sm:text-base">A vanguarda da odontologia, onde cada detalhe é pensado para sua máxima satisfação e bem-estar.</p>
