@@ -3,7 +3,7 @@
 import { useState, useEffect, FormEvent, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -15,7 +15,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { School, SmileIcon as Tooth, Stethoscope, Info, Instagram, Heart, Star, Handshake, Smile, Send, Menu, X, MessageSquare, Clock, Award, Users, CheckCircle, ArrowRight, Quote } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Preloader from '@/components/preloader'
-import CustomCursor from '@/components/custom-cursor'
 import AnimatedText from '@/components/animated-text'
 import Reveal from '@/components/reveal'
 
@@ -45,7 +44,7 @@ export default function LandingPage() {
   }
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2500)
+    const timer = setTimeout(() => setIsLoading(false), 3500) // Adjusted for new preloader duration
     return () => clearTimeout(timer)
   }, [])
 
@@ -121,13 +120,12 @@ export default function LandingPage() {
     { question: "Qual a durabilidade dos tratamentos estéticos?", answer: "Nossos tratamentos são projetados para a longevidade. Com os cuidados e manutenções recomendados, seu novo sorriso manterá a beleza e a função por muitos anos." }
   ]
 
-  if (isLoading) {
-    return <Preloader />
-  }
-
   return (
     <div className="bg-ivory text-charcoal font-sans overflow-x-hidden">
-      <CustomCursor />
+      <AnimatePresence>
+        {isLoading && <Preloader />}
+      </AnimatePresence>
+
       <header className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         isHeaderScrolled ? "bg-ivory/80 shadow-lg backdrop-blur-lg" : "bg-transparent"
