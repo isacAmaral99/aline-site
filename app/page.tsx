@@ -105,7 +105,7 @@ export default function LandingPage() {
 
     const whatsappMessage = `🦷 *Olá, Dra. Aline!*\n\nVim através do seu site e gostaria de agendar uma consulta.\n\n👤 *Nome:* ${nome}\n📞 *Telefone:* ${telefone}\n📧 *E-mail:* ${email}\n🎯 *Interesse:* ${tratamento}\n📅 *Data preferida:* ${dataPreferida}\n\n💬 *Mensagem:*\n${mensagem}\n\nAguardo seu retorno para agendarmos! 😊`
     const encodedMessage = encodeURIComponent(whatsappMessage)
-    window.open(`https://wa.me/5511999999999?text=${encodedMessage}`, "_blank")
+    window.open(`https://wa.me/551973658355?text=${encodedMessage}`, "_blank")
     setIsFormLoading(false)
     setFormSubmitted(true)
     setFormState({ nome: "", telefone: "", email: "", tratamento: "", mensagem: "" })
