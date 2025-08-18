@@ -17,7 +17,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Dra. Aline Foganholi - Especialista em Prótese Dentária e DTM",
   description: "Encontrando propósito em cada sorriso com tratamentos personalizados e de qualidade em Prótese Dentária e DTM.",
-    generator: 'v0.dev'
+    generator: 'v0.app'
 };
 
 export default function RootLayout({
