@@ -411,7 +411,7 @@ Aguardo seu retorno para agendarmos! 😊`
                 <div className="relative">
                   <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-gold/20 rounded-3xl blur-2xl opacity-30"></div>
                   <Image
-                    src="/dra-aline-profile.jpeg"
+                    src="/Foto_Aline.jpg"
                     alt="Dra. Aline Foganholi"
                     width={500}
                     height={600}
